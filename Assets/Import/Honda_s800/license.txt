@@ -1,0 +1,11 @@
+Model Information:
+* title:	Honda s800
+* source:	https://sketchfab.com/3d-models/honda-s800-fa6c6113f1e34d9baaff80b5b586a25d
+* author:	Alexios Apokaukos (https://sketchfab.com/Alexios_Apokaukos)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Honda s800" (https://sketchfab.com/3d-models/honda-s800-fa6c6113f1e34d9baaff80b5b586a25d) by Alexios Apokaukos (https://sketchfab.com/Alexios_Apokaukos) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

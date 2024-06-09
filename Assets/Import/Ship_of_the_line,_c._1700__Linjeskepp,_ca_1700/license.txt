@@ -1,0 +1,11 @@
+Model Information:
+* title:	Ship of the line, c. 1700 | Linjeskepp, ca 1700
+* source:	https://sketchfab.com/3d-models/ship-of-the-line-c-1700-linjeskepp-ca-1700-3afea352a40045b0a638c9900f669ed4
+* author:	SWEDISH NATIONAL MARITIME AND TRANSPORT MUSEUMS (https://sketchfab.com/maritima)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Ship of the line, c. 1700 | Linjeskepp, ca 1700" (https://sketchfab.com/3d-models/ship-of-the-line-c-1700-linjeskepp-ca-1700-3afea352a40045b0a638c9900f669ed4) by SWEDISH NATIONAL MARITIME AND TRANSPORT MUSEUMS (https://sketchfab.com/maritima) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
