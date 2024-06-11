@@ -22,6 +22,9 @@ public class carController : MonoBehaviour
     public float acceleration = 100f; // Incremento de fuerza por segundo
     public float maxSpeed = 50f; // Velocidad máxima del vehículo
 
+    public float speed = 1f;
+    public float turnSpeed = 1f;
+
     private Rigidbody rb;
     private float currentMotorForce;
     void Start()
@@ -29,16 +32,13 @@ public class carController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    HandleMovementAndSteering();
-    //}
+   
 
     void FixedUpdate()
     {
         HandleMotor();
         HandleSteering();
+        //HandleMovementAndSteering();
     }
 
 
@@ -56,25 +56,39 @@ public class carController : MonoBehaviour
     //    transform.Rotate(Vector3.up * turnInput * turnSpeed * Time.deltaTime);
     //}
 
-    //private void HandleMovementAndSteering()
-    //{
-    //    // Movimiento hacia adelante y hacia atrás
-    //    float moveInput = Input.GetAxis("Vertical");
+    private void HandleMovementAndSteering()
+    {
+        // Movimiento hacia adelante y hacia atrás
+        float moveInput = Input.GetAxis("Vertical");
 
-    //    if (moveInput != 0)
-    //    {
-    //        // Solo mover y girar si hay input de movimiento
-    //        transform.Translate(Vector3.back * moveInput * speed * Time.deltaTime);
+        if (moveInput != 0)
+        {
+            // Solo mover y girar si hay input de movimiento
+            transform.Translate(Vector3.back * moveInput * speed * Time.deltaTime);
 
-    //        // Giro del vehículo
-    //        float turnInput = Input.GetAxis("Horizontal");
-    //        transform.Rotate(Vector3.up * turnInput * turnSpeed * Time.deltaTime);
-    //    }
-    //}
+            // Giro del vehículo
+            float turnInput = Input.GetAxis("Horizontal");
+            transform.Rotate(Vector3.up * turnInput * turnSpeed * Time.deltaTime);
+        }
+    }
 
     private void HandleMotor()
     {
+        
         float moveInput = Input.GetAxis("Vertical");
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+
+            currentMotorForce = 0.0f;
+        }
+
+        // Detectar si la tecla W es liberada
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+
+            currentMotorForce = 0.0f;
+        }
 
         if (moveInput > 0)
         {
@@ -91,7 +105,7 @@ public class carController : MonoBehaviour
         else
         {
             // Reducir gradualmente la fuerza del motor cuando no se presiona ninguna tecla
-            currentMotorForce = Mathf.Lerp(currentMotorForce, 0, Time.deltaTime * 5);
+            currentMotorForce = Mathf.Lerp(currentMotorForce, 0, Time.deltaTime * 10f);
         }
 
         if (moveInput != 0)
@@ -102,6 +116,11 @@ public class carController : MonoBehaviour
             {
                 rb.AddForce(force);
             }
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, brakeForce * Time.deltaTime);
         }
     }
 
@@ -125,7 +144,7 @@ public class carController : MonoBehaviour
         // Simular inestabilidad a altas velocidades
         if (currentSpeed > maxSpeedForStableTurning && Mathf.Abs(turnInput) > 0.1f)
         {
-            rb.AddForce(Vector3.right * turnInput * instabilityFactor, ForceMode.Impulse);
+            //rb.AddForce(Vector3.right * turnInput * instabilityFactor, ForceMode.Impulse);
         }
     }
 

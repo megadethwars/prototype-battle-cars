@@ -2103,7 +2103,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1528375727}
   offset: {x: 0, y: 192, z: -396}
-  damping: 0.75
+  damping: 5
+  rotationSmoothTime: 1
+  smoothTime: 0.3
+  proportionalGain: 0.5
+  integralGain: 0.01
 --- !u!114 &1263962856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2118,7 +2122,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
-  damping: 1
+  damping: 2.5
+  rotationSmoothTime: 0.1
+  smoothTime: 0.3
+  proportionalGain: 1
+  integralGain: 0.1
 --- !u!1 &1429793347
 GameObject:
   m_ObjectHideFlags: 0
@@ -2357,12 +2365,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxMotorForce: 15000
   brakeForce: 1
-  maxTurnSpeed: 10
+  maxTurnSpeed: 50
   minTurnSpeed: 10
-  maxSpeedForStableTurning: 50
+  maxSpeedForStableTurning: 100
   instabilityFactor: 2
-  acceleration: 500
-  maxSpeed: 50000
+  acceleration: 5000
+  maxSpeed: 100000
+  speed: 1000
+  turnSpeed: 10
 --- !u!54 &1528375729
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2372,7 +2382,7 @@ Rigidbody:
   m_GameObject: {fileID: 1528375725}
   serializedVersion: 2
   m_Mass: 10
-  m_Drag: 2
+  m_Drag: 1
   m_AngularDrag: 2
   m_UseGravity: 0
   m_IsKinematic: 0
