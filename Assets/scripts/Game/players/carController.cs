@@ -25,11 +25,15 @@ public class carController : MonoBehaviour
     public float speed = 1f;
     public float turnSpeed = 1f;
 
+    public float airDrag = 0f; // Drag cuando el objeto está en el aire
+    public float groundDrag = 2f;
+
     private Rigidbody rb;
     private float currentMotorForce;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.drag = airDrag;
     }
 
    
@@ -38,7 +42,25 @@ public class carController : MonoBehaviour
     {
         HandleMotor();
         HandleSteering();
-        //HandleMovementAndSteering();
+        
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject.CompareTag("ground"))
+        {
+            rb.drag = groundDrag; // Aplicar drag cuando está en colisión con el plano
+            Debug.Log("pego");
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("ground"))
+        {
+            rb.drag = airDrag; // Eliminar drag cuando no está en colisión con el plano
+        }
     }
 
 
@@ -94,13 +116,13 @@ public class carController : MonoBehaviour
         {
             // Incrementar la fuerza del motor gradualmente
             currentMotorForce += acceleration * Time.deltaTime;
-            //currentMotorForce = Mathf.Clamp(currentMotorForce, 0, maxMotorForce);
+            currentMotorForce = Mathf.Clamp(currentMotorForce, 0, maxMotorForce);
         }
         else if (moveInput < 0)
         {
         //    // Incrementar la fuerza del motor gradualmente en reversa
             currentMotorForce -= acceleration * Time.deltaTime;
-        //    currentMotorForce = Mathf.Clamp(currentMotorForce, -maxMotorForce, 0);
+            currentMotorForce = Mathf.Clamp(currentMotorForce, -maxMotorForce, 0);
         }
         else
         {
