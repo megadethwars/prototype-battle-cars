@@ -1922,6 +1922,7 @@ GameObject:
   - component: {fileID: 1161640164}
   - component: {fileID: 1161640165}
   - component: {fileID: 1161640167}
+  - component: {fileID: 1161640168}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1969,6 +1970,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dabb4e11db55dc64391b4ebbbd4488c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1161640168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161640163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61ae42d6d024a941b29d8eb09b8f8ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 4770160153573436274, guid: 47d7f80f5ee204e4388923f0cec8abbe, type: 3}
 --- !u!1 &1166421728
 GameObject:
   m_ObjectHideFlags: 0
@@ -2871,19 +2885,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e6145b703b6604a80040acd20b09ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  motorForce: 1000000
-  maxMotorForce: 2000000
-  brakeForce: 1
-  maxTurnSpeed: 30
-  minTurnSpeed: 10
-  maxSpeedForStableTurning: 50
-  instabilityFactor: 2
-  acceleration: 100
-  maxSpeed: 50
-  airDrag: 0
-  groundDrag: 2
-  score: 0
-  health: 100
+  carData: {fileID: 0}
+  bulletSpawnPoint: {fileID: 1768869247}
 --- !u!54 &1528375729
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2892,8 +2895,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1528375725}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 1
+  m_Mass: 5
+  m_Drag: 0.5
   m_AngularDrag: 2
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -3035,6 +3038,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582579738}
   m_CullTransparentMesh: 1
+--- !u!1 &1768869246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1768869247}
+  m_Layer: 0
+  m_Name: bulletPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1768869247
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768869246}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.04, z: -1.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1528375727}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1845157716
 GameObject:
   m_ObjectHideFlags: 0

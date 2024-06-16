@@ -6,6 +6,7 @@ TagManager:
   tags:
   - UIPanel
   - ground
+  - bullet
   layers:
   - Default
   - TransparentFX

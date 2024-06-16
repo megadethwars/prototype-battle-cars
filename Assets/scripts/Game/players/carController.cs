@@ -31,6 +31,9 @@ public class carController : MonoBehaviour
     //public int score;
     //public int health = 100;
 
+    bool isGrounded=false;
+
+    public Transform bulletSpawnPoint;
     private void Awake()
     {
         carData = new CarData();
@@ -45,13 +48,23 @@ public class carController : MonoBehaviour
         rb.drag = carData.airDrag;
     }
 
-   
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Shoot();
+        }
+    }
 
     void FixedUpdate()
     {
-        HandleMotor();
-        HandleSteering();
+        if (isGrounded)
+        {
+            HandleMotor();
+        }
         
+        HandleSteering();
+ 
     }
 
     void OnCollisionEnter(Collision collision)
@@ -60,7 +73,7 @@ public class carController : MonoBehaviour
         if (collision.gameObject.CompareTag("ground"))
         {
             rb.drag = carData.groundDrag; // Aplicar drag cuando está en colisión con el plano
-          
+            isGrounded = true;
         }
     }
 
@@ -69,6 +82,7 @@ public class carController : MonoBehaviour
         if (collision.gameObject.CompareTag("ground"))
         {
             rb.drag = carData.airDrag; // Eliminar drag cuando no está en colisión con el plano
+            isGrounded = false;
         }
     }
 
@@ -82,11 +96,13 @@ public class carController : MonoBehaviour
         
         float moveInput = Input.GetAxis("Vertical");
 
+        
+
         if (Input.GetKeyDown(KeyCode.W))
         {
 
             currentMotorForce = 0.0f;
-            Shoot();
+           
             
         }
 
@@ -102,14 +118,14 @@ public class carController : MonoBehaviour
             // Incrementar la fuerza del motor gradualmente
             currentMotorForce += carData.acceleration * Time.deltaTime;
             currentMotorForce = Mathf.Clamp(currentMotorForce, 0, carData.maxMotorForce);
-            Debug.Log(currentMotorForce);
+          
         }
         else if (moveInput < 0)
         {
         //    // Incrementar la fuerza del motor gradualmente en reversa
             currentMotorForce -= carData.acceleration * Time.deltaTime;
             currentMotorForce = Mathf.Clamp(currentMotorForce, -carData.maxMotorForce, 0);
-            Debug.Log(currentMotorForce);
+         
         }
         else
         {
@@ -168,8 +184,13 @@ public class carController : MonoBehaviour
     {
         // Implement shooting logic here
         // If enemy is hit:
-        EventManager.Instance.TriggerEvent<OnEnemyHit>(new OnEnemyHit(10));
-        Debug.Log("w");
+        //EventManager.Instance.TriggerEvent<OnEnemyHit>(new OnEnemyHit(10));
+       
+        if (bulletSpawnPoint != null)
+        {
+            EventManager.Instance.TriggerEvent<OnShoot>(new OnShoot(bulletSpawnPoint.position, bulletSpawnPoint.rotation));
+            //Debug.Log("Shoot event triggered");
+        }
     }
 
 
