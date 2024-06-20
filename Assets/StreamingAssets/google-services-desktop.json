@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "331338335516",
+    "project_id": "my-first-project-1f0aa",
+    "storage_bucket": "my-first-project-1f0aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331338335516:android:634661fbcd6e620c7c66d9",
+        "android_client_info": {
+          "package_name": "com.avs.battlecars"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXnGA4xBx1zzwsDRq8XSw1stgMNEDHXhc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
