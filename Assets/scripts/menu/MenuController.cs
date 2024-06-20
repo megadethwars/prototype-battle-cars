@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using Firebase.Auth;
 public class MenuController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject panelPrincipal;
+    FirebaseUser user;
+    
     private void Awake()
     {
         GameObject[] panels = GameObject.FindGameObjectsWithTag("UIPanel");
@@ -19,6 +21,8 @@ public class MenuController : MonoBehaviour
             }
             
         }
+        user = FirebaseAuthManager.Instance.User;
+        Debug.Log(user.Email);
     }
     public void jugar()
     {
@@ -50,6 +54,7 @@ public class MenuController : MonoBehaviour
         }
         panel.SetActive(true);
     }
-
+   
+    
 }
     
