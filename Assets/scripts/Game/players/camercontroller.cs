@@ -20,6 +20,8 @@ public class camercontroller : MonoBehaviour
 
     void Start()
     {
+        GameObject cartarget = GameObject.FindWithTag("Player");
+        Debug.Log(cartarget);
         Vector3 desiredPosition = target.position - target.forward * offset.z + target.up * offset.y;
         transform.position = new Vector3(desiredPosition.x, desiredPosition.y, desiredPosition.z);
         offsetZ = desiredPosition.z;
