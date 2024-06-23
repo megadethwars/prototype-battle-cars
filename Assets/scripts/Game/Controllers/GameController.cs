@@ -12,7 +12,10 @@ public class GameController : MonoBehaviour
     } 
     void Start()
     {
-        GameObject player = PhotonNetwork.Instantiate("Sphere", new Vector3(450, 0, 0), Quaternion.identity);
+        float randomx = Random.Range(200.0f, 500.0f);
+        float randomz = Random.Range(0.0f, 100.0f);
+        Debug.Log(randomx);
+        GameObject player = PhotonNetwork.Instantiate("Sphere", new Vector3(randomx, 0, randomz), Quaternion.identity);
         Debug.Log("---------TRATANDO DE ISNTANCIAR---");
         //Instantiate(carro, new Vector3(500, 0, 0), Quaternion.identity);
     }
@@ -20,6 +23,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         
     }
 }

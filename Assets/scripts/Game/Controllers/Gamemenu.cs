@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class Gamemenu : MonoBehaviour
     bool isPaused = false;
     void Start()
     {
-        
+        pauseMenuPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -46,7 +47,8 @@ public class Gamemenu : MonoBehaviour
     public void LoadMainMenu()
     {
         Time.timeScale = 1f; // Asegurarse de que el tiempo esté normalizado
-        SceneManager.LoadScene("MenuScene"); // Asegúrate de que la escena del menú principal esté correctamente nombrada
+        PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("LobbyScene"); // Asegúrate de que la escena del menú principal esté correctamente nombrada
     }
 
     public void QuitGame()

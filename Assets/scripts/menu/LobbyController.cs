@@ -19,6 +19,7 @@ public class LobbyController : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        PhotonNetwork.Disconnect();
         PhotonNetwork.ConnectUsingSettings();
         createRoomButton.onClick.AddListener(() => CreateRoom(roomCreated.text.Trim()));
         joinRoomButton.onClick.AddListener(() => JoinRoom(roomJoined.text.Trim()));
@@ -43,6 +44,10 @@ public class LobbyController : MonoBehaviourPunCallbacks
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 4;
+        roomOptions.PlayerTtl = 60000; // 60 segundos (1 minuto)
+
+        // Mantener la sala activa por un tiempo incluso si todos los jugadores se desconectan temporalmente
+        roomOptions.EmptyRoomTtl = 300000;
         if (roomName == "")
         {
             statusText.text = "invalid room";

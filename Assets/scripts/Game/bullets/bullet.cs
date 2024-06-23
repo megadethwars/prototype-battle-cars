@@ -26,7 +26,7 @@ public class bullet : Projectile
     private void InitializeBullet()
     {
         // Inicialización específica para misiles
-        Debug.Log("Missile initialized");
+        //Debug.Log("Missile initialized");
     }
 
     private void TrackTarget()
@@ -52,16 +52,16 @@ public class bullet : Projectile
         //{
         //    Instantiate(explosionEffect, transform.position, transform.rotation);
         //}
-        Debug.Log("colisiono");
+        //Debug.Log("colisiono");
         DestroyProjectile();
         
     }
 
     private IEnumerator destroyBulletCourrutine()
     {
-        Debug.Log("destruido");
+        //Debug.Log("destruido");
         yield return new WaitForSeconds(secondsToDestroy);
-        Debug.Log("destruido");
+        
         Destroy(gameObject);
 
     }
