@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class camercontroller : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Transform target; // El vehículo a seguir
+    private Transform target; // El vehículo a seguir
     public Vector3 offset; // Offset de la cámara
     public float damping = 1f; // Amortiguación del seguimiento
     public float rotationSmoothTime = 0.1f; // Tiempo de suavizado para la rotación
@@ -16,35 +17,46 @@ public class camercontroller : MonoBehaviour
     private float integralSum;
 
     private Vector3 velocity = Vector3.zero;
-    private float offsetZ=0.0f;
+    private float offsetZ = 0.0f;
 
     void Start()
     {
-        GameObject cartarget = GameObject.FindWithTag("Player");
-        Debug.Log(cartarget);
-        Vector3 desiredPosition = target.position - target.forward * offset.z + target.up * offset.y;
-        transform.position = new Vector3(desiredPosition.x, desiredPosition.y, desiredPosition.z);
-        offsetZ = desiredPosition.z;
+        FindLocalPlayer();
     }
 
-    // Update is called once per frame
+    void FindLocalPlayer()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in players)
+        {
+            PhotonView photonView = player.GetComponent<PhotonView>();
+            if (photonView != null && photonView.IsMine)
+            {
+                target = player.transform;
+                Vector3 desiredPosition = target.position - target.forward * offset.z + target.up * offset.y;
+                transform.position = new Vector3(desiredPosition.x, desiredPosition.y, desiredPosition.z);
+                offsetZ = desiredPosition.z;
+                Debug.Log("Jugador local encontrado: " + player.name);
+                return;
+            }
+        }
+        Debug.Log("Jugador local no encontrado, buscando...");
+    }
+
     void FixedUpdate()
     {
-       
-        Vector3 desiredPosition = target.position - target.forward * offset.z + target.up * offset.y;
+        if (target == null)
+        {
+            FindLocalPlayer();
+        }
 
-
-        // Suavizar la posición de la cámara
-        //transform.position = desiredPosition;
-        transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * damping);
-        transform.LookAt(target); // Hace que la c�mara mire hacia el veh�culo
-
-        //transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, smoothTime);
-        
-        // Suavizar la rotación de la cámara
-        //Quaternion desiredRotation = Quaternion.LookRotation(target.position - transform.position);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, rotationSmoothTime);
+        if (target != null)
+        {
+            Vector3 desiredPosition = target.position - target.forward * offset.z + target.up * offset.y;
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * damping);
+            transform.LookAt(target);
+        }
     }
 
-    
+
 }

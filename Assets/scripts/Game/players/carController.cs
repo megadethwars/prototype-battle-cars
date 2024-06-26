@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,34 +38,46 @@ public class carController : MonoBehaviour
     private void Awake()
     {
         carData = new CarData();
-        Debug.Log(carData.acceleration);
+
+        
+
     }
 
     private Rigidbody rb;
     private float currentMotorForce;
+    PhotonView photonView;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.drag = carData.airDrag;
+
+        photonView = gameObject.GetComponent<PhotonView>();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Shoot();
+            if (photonView.IsMine)
+            {
+                Shoot();
+            }
+            
         }
     }
 
     void FixedUpdate()
     {
-        if (isGrounded)
+        if (photonView.IsMine)
         {
-            HandleMotor();
+            if (isGrounded)
+            {
+                HandleMotor();
+            }
+
+            HandleSteering();
         }
-        
-        HandleSteering();
- 
+
     }
 
     void OnCollisionEnter(Collision collision)
@@ -72,8 +85,12 @@ public class carController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("ground"))
         {
-            rb.drag = carData.groundDrag; // Aplicar drag cuando está en colisión con el plano
-            isGrounded = true;
+            if (rb != null)
+            {
+                rb.drag = carData.groundDrag; // Aplicar drag cuando está en colisión con el plano 
+                isGrounded = true;
+            }
+            
         }
     }
 

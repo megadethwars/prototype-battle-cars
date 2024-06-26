@@ -25,6 +25,8 @@ public class LobbyController : MonoBehaviourPunCallbacks
         joinRoomButton.onClick.AddListener(() => JoinRoom(roomJoined.text.Trim()));
         //listRoomsButton.onClick.AddListener(ListRooms);
         //leaveRoomButton.onClick.AddListener(LeaveRoom);
+        PhotonNetwork.SendRate = 20; // Envía datos 20 veces por segundo
+        PhotonNetwork.SerializationRate = 10; // Serializa datos 10 veces por segundo
     }
 
     public override void OnConnectedToMaster()
