@@ -26,7 +26,7 @@ public class MenuController : MonoBehaviour
     }
     public void jugar()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("LobbyScene");
     }
 
     public void opciones()

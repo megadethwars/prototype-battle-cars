@@ -23,7 +23,7 @@ public class BulletSpawnerManager : MonoBehaviour
         if (shootEvent != null && bulletPrefab != null)
         {
             Instantiate(bulletPrefab, shootEvent.position, shootEvent.rotation);
-            //Debug.Log("Bullet fired!");
+            
         }
     }
 }

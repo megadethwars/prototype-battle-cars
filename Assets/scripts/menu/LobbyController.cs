@@ -5,6 +5,7 @@ using Photon.Pun;
 using Photon;
 using Photon.Realtime;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LobbyController : MonoBehaviourPunCallbacks
 {
@@ -116,5 +117,10 @@ public class LobbyController : MonoBehaviourPunCallbacks
     {
         Debug.Log("Has dejado la sala");
         statusText.text = "Has dejado la sala";
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
     }
 }
