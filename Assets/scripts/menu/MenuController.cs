@@ -21,8 +21,8 @@ public class MenuController : MonoBehaviour
             }
             
         }
-        user = FirebaseAuthManager.Instance.User;
-        Debug.Log(user.Email);
+        //user = FirebaseAuthManager.Instance.User;
+        //Debug.Log(user.Email);
     }
     public void jugar()
     {
@@ -32,6 +32,11 @@ public class MenuController : MonoBehaviour
     public void opciones()
     {
         Debug.Log("entrando al menu opciones");
+    }
+
+    public void networSettings()
+    {
+        SceneManager.LoadScene("pidScene");
     }
 
     public void atras()
